@@ -16,16 +16,18 @@ This project is a full-stack CRUD app built with:
 1. Clone this repository
 
   ```bash
-    https://github.com/Yquannn/flask-crud
+    git clone https://github.com/Yquannn/flask-crud
   ```
 
 4. Open your terminal and navigate to the server folder:
    cd server
 
 5. Inside the server folder Install backend dependencies:
+    ```bash
    pip install -r requirements.txt
 
-6. Start the Flask backend:
+7. Start the Flask backend:
+   ```bash
    python run.py
 
 ------------------------------------------------------------
@@ -36,12 +38,14 @@ This project is a full-stack CRUD app built with:
    cd client
 
 2. Install frontend dependencies:
+   ```bash
    npm install
 
-3. Start the development server:
+4. Start the development server:
+    ```bash
    npm run dev
 
-4. The app will be available at:
+6. The app will be available at:
    http://localhost:3000
 
 ------------------------------------------------------------
