@@ -97,6 +97,6 @@ I followed a clear separation of concerns between the frontend and backend:
 
 - Frontend is deployed on Vercel.
 - Backend runs locally via Flask, and can be deployed on a production server using Render.
-  LINK: https://flask-crud-mjft.vercel.app/
+-LINK: https://flask-crud-frontend-mu.vercel.app/
 
 ------------------------------------------------------------
