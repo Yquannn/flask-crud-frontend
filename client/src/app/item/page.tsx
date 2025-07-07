@@ -2,8 +2,9 @@
 
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import EditItemModal from '../components/EditItemModal';
-import styles from '../styles/ItemListPage.module.css'; // ✅ Make sure file exists
+import styles from '../styles/ItemListPage.module.css'; 
+import { useRouter } from 'next/navigation';
+import EditItem from '../item-edit/[id]/page';
 
 interface Item {
   id: number;
@@ -15,9 +16,11 @@ interface Item {
 export default function ItemListPage() {
   const [items, setItems] = useState<Item[]>([]);
   const [editingItem, setEditingItem] = useState<Item | null>(null);
-  const [showModal, setShowModal] = useState(false);
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+
+  const router = useRouter();
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -52,7 +55,7 @@ export default function ItemListPage() {
       setItems((prev) =>
         prev.map((item) => (item.id === updatedItem.id ? res.data : item))
       );
-      setShowModal(false);
+      
       setEditingItem(null);
     } catch (err) {
       console.error(err);
@@ -78,19 +81,20 @@ export default function ItemListPage() {
               <p className={styles.itemPrice}>₱{item.price.toLocaleString()}</p>
 
               <div className={styles.buttonContainer}>
-                <button
-                  className={styles.updateButton}
-                  onClick={() => {
-                    setEditingItem(item);
-                    setShowModal(true);
-                  }}
-                >
-                  Update
-                </button>
+              <button
+                className={styles.updateButton}
+                onClick={() => router.push(`/item-edit/${item.id}`)}
+              >
+                Update
+            </button>
 
                 <button
                   className={styles.deleteButton}
-                  onClick={() => handleDelete(item.id)}
+                  onClick={() => {
+                    handleDelete(item.id);
+                    router.push(`/item/${item.id}`);
+                    
+                  }}
                 >
                   Delete
                 </button>
@@ -100,14 +104,6 @@ export default function ItemListPage() {
         </ul>
       )}
 
-      {showModal && editingItem && (
-        <EditItemModal
-          item={editingItem}
-          setItem={setEditingItem}
-          onClose={() => setShowModal(false)}
-          onSave={handleSave}
-        />
-      )}
     </div>
   );
 }
