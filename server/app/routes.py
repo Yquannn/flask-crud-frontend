@@ -2,11 +2,10 @@ from flask import request, jsonify
 from . import db
 from .models import Item
 from flask import current_app as app
-# from flask_jwt_extended import jwt_required
+
 
 
 @app.route('/api/items', methods=['POST'])  # this function is used to create a new item
-# @jwt_required()
 def create_item():
     data = request.get_json()
 
@@ -14,7 +13,7 @@ def create_item():
     if not data.get('name') or len(data['name'].strip()) == 0 or data.get('price', 0) <= 0:
         return jsonify({'error': 'Name is required and price must be greater than 0'}), 400
 
-    # Create the item if validation passes
+
     item = Item(
         name=data['name'],
         description=data.get('description', ''),
@@ -59,7 +58,7 @@ def update_item(id):
     item.name = data.get('name', item.name)
     item.description = data.get('description', item.description)
     item.price = data.get('price', item.price)
-    # validate if the name is empty or price is less than 0 
+    # validate if the name is empty or price is less than or equal to 0 
     if not data.get('name') or len(data['name'].strip()) == 0 or data.get('price', 0) <= 0:
         return jsonify({'error': 'Name is required and price must be greater than 0'}), 400
     db.session.commit()
