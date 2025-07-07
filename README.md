@@ -35,7 +35,7 @@ This project is a full-stack CRUD app built with:
 
 💻 Frontend (Next.js)
 
-1. Open a new terminal and navigate to the client folder
+1. Open a new terminal and navigate to flask-crud/client
     ```bash
    cd client
 
