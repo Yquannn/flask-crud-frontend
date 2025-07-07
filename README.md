@@ -21,7 +21,7 @@ This project is a full-stack CRUD app built with:
 
 4. Open your terminal and navigate to flask-crud/server:
     ```bash
-   cd server
+   cd flask-crud/server
 
 6. Inside the server folder Install backend dependencies:
     ```bash
@@ -37,7 +37,7 @@ This project is a full-stack CRUD app built with:
 
 1. Open a new terminal and navigate to flask-crud/client
     ```bash
-   cd client
+   cd flask-crud/client
 
 3. Install frontend dependencies:
    ```bash
