@@ -19,10 +19,11 @@ This project is a full-stack CRUD app built with:
     git clone https://github.com/Yquannn/flask-crud
   ```
 
-4. Open your terminal and navigate to the server folder:
+4. Open your terminal and navigate to the server folder
+    ```bash
    cd server
 
-5. Inside the server folder Install backend dependencies:
+6. Inside the server folder Install backend dependencies:
     ```bash
    pip install -r requirements.txt
 
