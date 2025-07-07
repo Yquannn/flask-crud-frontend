@@ -16,10 +16,13 @@ export default function PostList() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+
+
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/items');
+        const res = await axios.get(`${baseUrl}/api/items`);
         setPosts(res.data);
         console.log(res.data);
       } catch (err) {
