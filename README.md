@@ -19,7 +19,7 @@ This project is a full-stack CRUD app built with:
     git clone https://github.com/Yquannn/flask-crud
   ```
 
-4. Open your terminal and navigate to the server folder
+4. Open your terminal and navigate to flask-crud/server:
     ```bash
    cd server
 
