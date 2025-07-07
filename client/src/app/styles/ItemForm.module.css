@@ -1,0 +1,83 @@
+.container {
+    max-width: 500px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background: #f9fafb;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  
+  .input,
+  .textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 1rem;
+    background-color: #ffffff;
+    transition: border 0.2s ease;
+  }
+  
+  .input:focus,
+  .textarea:focus {
+    border-color: #2563eb;
+    outline: none;
+  }
+  
+  .textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+  
+  .saveButton {
+    background: #2563eb;
+    color: white;
+    padding: 0.5rem 1.25rem;
+    font-size: 0.95rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  
+  .saveButton:hover {
+    background: #1e40af;
+  }
+  
+  .cancelButton {
+    background: transparent;
+    color: #374151;
+    padding: 0.5rem 1.25rem;
+    font-size: 0.95rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .cancelButton:hover {
+    background: #f3f4f6;
+  }
+  
