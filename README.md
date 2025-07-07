@@ -69,9 +69,8 @@ I followed a clear separation of concerns between the frontend and backend:
 - Structured into modular folders like routes, services, and models.
 - APIs are designed following REST principles (GET, POST, PUT, DELETE).
 - Implemented Flask-CORS to enable communication with the frontend.
-- Connected to a MySQL database using parameterized queries for security.
-- Included unit tests using pytest to verify API behavior.
-
+- Connected to a SQLITE.
+- 
 ✅ Key Features:
 - CRUD operations
 - Input validation
@@ -98,5 +97,6 @@ I followed a clear separation of concerns between the frontend and backend:
 
 - Frontend is deployed on Vercel.
 - Backend runs locally via Flask, and can be deployed on a production server using Render.
+  LINK: https://flask-crud-mjft.vercel.app/
 
 ------------------------------------------------------------
