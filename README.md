@@ -35,10 +35,11 @@ This project is a full-stack CRUD app built with:
 
 💻 Frontend (Next.js)
 
-1. Open a new terminal and navigate to the client folder:
+1. Open a new terminal and navigate to the client folder
+    ```bash
    cd client
 
-2. Install frontend dependencies:
+3. Install frontend dependencies:
    ```bash
    npm install
 
