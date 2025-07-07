@@ -22,10 +22,13 @@ export default function ItemListPage() {
 
   const router = useRouter();
 
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+
+
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const res = await axios.get('http://127.0.0.1:5000/api/items');
+        const res = await axios.get(`${baseUrl}/api/items`);
         setItems(res.data);
       } catch (err) {
         console.error(err);
@@ -41,7 +44,7 @@ export default function ItemListPage() {
   const handleDelete = async (id: number) => {
     if (!confirm("Delete this item?")) return;
     try {
-      await axios.delete(`http://127.0.0.1:5000/api/items/${id}`);
+      await axios.delete(`${baseUrl}/api/items/${id}`);
       setItems((prev) => prev.filter((item) => item.id !== id));
     } catch (err) {
       console.error(err);
@@ -51,7 +54,7 @@ export default function ItemListPage() {
 
   const handleSave = async (updatedItem: Item) => {
     try {
-      const res = await axios.put(`http://127.0.0.1:5000/api/items/${updatedItem.id}`, updatedItem);
+      const res = await axios.put(`${baseUrl}/api/items/${updatedItem.id}`, updatedItem);
       setItems((prev) =>
         prev.map((item) => (item.id === updatedItem.id ? res.data : item))
       );

@@ -13,8 +13,10 @@ interface Item {
 export default function Navbar() {
   const [items, setItems] = useState<Item[]>([]);
 
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+
   useEffect(() => {
-    axios.get('http://127.0.0.1:5000/api/items') 
+    axios.get(`${baseUrl}/api/items`)
       .then(res => setItems(res.data))
       .catch(err => console.error('Failed to fetch items:', err));
   }, []);

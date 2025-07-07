@@ -12,6 +12,8 @@ export default function CreateItemPage() {
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState<number>(0);
 
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -21,7 +23,7 @@ export default function CreateItemPage() {
     }
 
     try {
-      await axios.post('http://127.0.0.1:5000/api/items', {
+      await axios.post(`${baseUrl}/api/items`, {
         name,
         description,
         price,

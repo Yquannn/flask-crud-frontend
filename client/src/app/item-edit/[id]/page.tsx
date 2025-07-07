@@ -26,9 +26,11 @@ export default function EditItemPage() {
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [loading, setLoading] = useState(true);
 
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+
   useEffect(() => {
     axios
-      .get(`http://127.0.0.1:5000/api/items/${id}`)
+      .get(`${baseUrl}/api/items/${id}`)
       .then((res) => setItem(res.data))
       .catch(() => {
         alert('Item not found.');
@@ -68,7 +70,7 @@ export default function EditItemPage() {
 
     if (Object.keys(filteredErrors).length === 0) {
       try {
-        await axios.put(`http://127.0.0.1:5000/api/items/${id}`, {
+        await axios.put(`${baseUrl}/api/items/${id}`, {
           ...item,
           price: typeof item.price === 'string' ? parseFloat(item.price) : item.price,
         });
