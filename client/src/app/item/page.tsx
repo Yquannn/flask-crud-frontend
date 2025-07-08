@@ -73,7 +73,7 @@ export default function ItemListPage() {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Items</h1>
+      <h1>Items</h1>
 
       {items.length === 0 ? (
         <p className={styles.noItems}>No items found.</p>

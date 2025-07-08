@@ -18,7 +18,6 @@ export default function PostList() {
 
   const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:5000';
 
-
   useEffect(() => {
     const fetchPosts = async () => {
       try {
@@ -41,17 +40,23 @@ export default function PostList() {
 
   return (
     <div className={styles.postListContainer}>
-      <ul className={styles.postList}>
-        {posts.map((post) => (
-          <li key={post.id} className={styles.postItem}>
-            <h3 className={styles.postTitle}>{post.name}</h3>
-            <p className={styles.postDescription}>{post.description}</p>
-            <p className={styles.postPrice}>
-              ₱{post.price.toLocaleString()}
-            </p>
-          </li>
-        ))}
-      </ul>
+      <h1>Home</h1>
+
+      {posts.length === 0 ? (
+        <p className={styles.noItems}>No items found.</p>
+      ) : (
+        <ul className={styles.postList}>
+          {posts.map((post) => (
+            <li key={post.id} className={styles.postItem}>
+              <h3 className={styles.postTitle}>{post.name}</h3>
+              <p className={styles.postDescription}>{post.description}</p>
+              <p className={styles.postPrice}>
+                ₱{post.price.toLocaleString()}
+              </p>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
