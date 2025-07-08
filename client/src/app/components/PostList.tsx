@@ -42,8 +42,8 @@ export default function PostList() {
     <div className={styles.postListContainer}>
       <h1>Home</h1>
 
-      {posts.length === 0 ? (
-        <p className={styles.noItems}>No items found.</p>
+      {posts.length === 0 ? ( 
+        <p className={styles.noItems}>No items found.</p> //show if no items
       ) : (
         <ul className={styles.postList}>
           {posts.map((post) => (
