@@ -16,7 +16,7 @@ export default function PostList() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
-  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:5000';
 
 
   useEffect(() => {

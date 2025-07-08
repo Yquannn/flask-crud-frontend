@@ -3,8 +3,7 @@
 import { useParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import styles from '../../styles/EditItem.module.css'; // Adjust path as needed
-
+import styles from '../../styles/EditItem.module.css';
 interface Item {
   id: number;
   name: string;
@@ -26,7 +25,7 @@ export default function EditItemPage() {
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [loading, setLoading] = useState(true);
 
-  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:5000';
 
   useEffect(() => {
     axios

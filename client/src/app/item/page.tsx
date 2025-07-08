@@ -22,7 +22,7 @@ export default function ItemListPage() {
 
   const router = useRouter();
 
-  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:5000';
 
 
   useEffect(() => {
