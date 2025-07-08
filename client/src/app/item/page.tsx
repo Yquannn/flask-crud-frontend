@@ -46,6 +46,8 @@ export default function ItemListPage() {
     try {
       await axios.delete(`${baseUrl}/api/items/${id}`);
       setItems((prev) => prev.filter((item) => item.id !== id));
+      alert("Item deleted successfully.");
+      router.push('/item')
     } catch (err) {
       console.error(err);
       alert("Delete failed.");
