@@ -13,7 +13,7 @@ interface Item {
 export default function Navbar() {
   const [items, setItems] = useState<Item[]>([]);
 
-  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:5000';
 
   useEffect(() => {
     axios.get(`${baseUrl}/api/items`)
