@@ -41,18 +41,34 @@ export default function ItemListPage() {
     fetchItems();
   }, []);
 
-  const handleDelete = async (id: number) => {
-    if (!confirm("Delete this item?")) return;
-    try {
-      await axios.delete(`${baseUrl}/api/items/${id}`);
+const handleDelete = async (id: number) => {
+
+// validate if the user wants to delete
+const confirmed = window.confirm("Are you sure u want to delete?")
+if(!confirmed){
+  console.log('Cancelled')
+  return;
+}else{
+  try {
+    const response = await axios.delete(`${baseUrl}/api/items/${id}`);
+    
+    if (response.status === 200 || response.status === 204) {
       setItems((prev) => prev.filter((item) => item.id !== id));
       alert("Item deleted successfully.");
-      router.push('/item')
-    } catch (err) {
-      console.error(err);
-      alert("Delete failed.");
+    } else {
+      alert("Item not found or already deleted.");
     }
-  };
+  } catch (err: any) {
+    console.error("Delete error:", err);
+    if (err.response?.status === 404) {
+      alert("Item not found.");
+    } else {
+      alert("Delete failed. Please try again later.");
+    }
+  }
+}
+};
+
 
   const handleSave = async (updatedItem: Item) => {
     try {
@@ -97,7 +113,7 @@ export default function ItemListPage() {
                   className={styles.deleteButton}
                   onClick={() => {
                     handleDelete(item.id);
-                    router.push(`/item/${item.id}`);
+                    // router.push(`/item/${item.id}`);
                     
                   }}
                 >
