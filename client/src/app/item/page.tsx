@@ -1,10 +1,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import styles from '../styles/ItemListPage.module.css'; 
 import { useRouter } from 'next/navigation';
 import EditItem from '../item-edit/[id]/page';
+import { apiClient, handleApiError } from '../utils/api';
 
 interface Item {
   id: number;
@@ -22,13 +22,10 @@ export default function ItemListPage() {
 
   const router = useRouter();
 
-  const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:5000';
-
-
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const res = await axios.get(`${baseUrl}/api/items`);
+        const res = await apiClient.get('/api/items');
         setItems(res.data);
       } catch (err) {
         console.error(err);
@@ -42,15 +39,15 @@ export default function ItemListPage() {
   }, []);
 
 const handleDelete = async (id: number) => {
+  // validate if the user wants to delete
+  const confirmed = window.confirm("Are you sure you want to delete this item?");
+  if (!confirmed) {
+    console.log('Delete cancelled');
+    return;
+  }
 
-// validate if the user wants to delete
-const confirmed = window.confirm("Are you sure u want to delete?")
-if(!confirmed){
-  console.log('Cancelled')
-  return;
-}else{
   try {
-    const response = await axios.delete(`${baseUrl}/api/items/${id}`);
+    const response = await apiClient.delete(`/api/items/${id}`);
     
     if (response.status === 200 || response.status === 204) {
       setItems((prev) => prev.filter((item) => item.id !== id));
@@ -60,19 +57,37 @@ if(!confirmed){
     }
   } catch (err: any) {
     console.error("Delete error:", err);
+    
+    // If the item was actually deleted but we got an error response
     if (err.response?.status === 404) {
-      alert("Item not found.");
+      // Remove the item from the list anyway since it's likely already deleted
+      setItems((prev) => prev.filter((item) => item.id !== id));
+      alert("Item has been deleted.");
+    } else if (err.response?.status === 500) {
+      // Server error - check if item still exists
+      try {
+        await apiClient.get(`/api/items/${id}`);
+        // If we get here, item still exists
+        alert("Delete failed. Please try again later.");
+      } catch (getErr: any) {
+        if (getErr.response?.status === 404) {
+          // Item was actually deleted
+          setItems((prev) => prev.filter((item) => item.id !== id));
+          alert("Item has been deleted.");
+        } else {
+          alert("Delete failed. Please try again later.");
+        }
+      }
     } else {
       alert("Delete failed. Please try again later.");
     }
   }
-}
 };
 
 
   const handleSave = async (updatedItem: Item) => {
     try {
-      const res = await axios.put(`${baseUrl}/api/items/${updatedItem.id}`, updatedItem);
+      const res = await apiClient.put(`/api/items/${updatedItem.id}`, updatedItem);
       setItems((prev) =>
         prev.map((item) => (item.id === updatedItem.id ? res.data : item))
       );
